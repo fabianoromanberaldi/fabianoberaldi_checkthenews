@@ -1,3 +1,23 @@
+name:
+robocorp_rpa
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9.16
+  - tesseract=4.1.1
+  - nodejs=16.14.2
+  - pip=22.1.2
+  - pip:
+    - robotframework-browser==17.2.0
+    - rpaframework==24.1.2
+    - rpaframework-aws==5.2.8
+    - rpaframework-google==7.0.3
+    - rpaframework-recognition==5.1.2
+    - pandas
+    - pytz
+    - wget
+rccPostInstall:
+  - rfbrowser init
 tasks:
   Trigger start script:
     shell: python main.py
