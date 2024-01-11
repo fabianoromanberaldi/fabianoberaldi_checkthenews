@@ -15,3 +15,5 @@ dependencies:
     - rpaframework-recognition==5.1.2
 rccPostInstall:
   - rfbrowser init
+command:
+  - python main.py
