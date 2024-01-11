@@ -1,0 +1,104 @@
+2024-01-10 22:34:31,157 | __main__ | INFO | Open browser: The browser was opened successfully
+2024-01-11 08:31:41,307 | __main__ | INFO | PROCCESS STARTED
+2024-01-11 08:31:52,812 | __main__ | INFO | Open browser: The browser was opened successfully
+2024-01-11 08:31:52,813 | __main__ | INFO | Checking dates
+2024-01-11 08:32:01,623 | __main__ | INFO | Checking dates finished. Number of pages: 2
+2024-01-11 08:32:01,624 | __main__ | INFO | Getting the results
+2024-01-11 08:32:08,281 | __main__ | INFO | The results has been gotten
+2024-01-11 08:32:08,281 | __main__ | INFO | Exporting the results to Excel file
+2024-01-11 08:32:35,455 | __main__ | INFO | The results has been exported successfully
+2024-01-11 08:37:01,098 | __main__ | INFO | PROCCESS STARTED
+2024-01-11 08:37:07,810 | __main__ | INFO | Open browser: The browser was opened successfully
+2024-01-11 08:37:07,811 | __main__ | INFO | Checking dates
+2024-01-11 08:37:16,511 | __main__ | INFO | Checking dates finished. Number of pages: 2
+2024-01-11 08:37:16,511 | __main__ | INFO | Getting the results
+2024-01-11 08:37:22,867 | __main__ | INFO | The results has been gotten
+2024-01-11 08:37:22,868 | __main__ | INFO | Exporting the results to Excel file
+2024-01-11 08:37:28,541 | __main__ | INFO | The results has been exported successfully
+2024-01-11 08:38:30,441 | __main__ | INFO | PROCCESS STARTED
+2024-01-11 08:38:37,334 | __main__ | INFO | Open browser: The browser was opened successfully
+2024-01-11 08:38:37,335 | __main__ | INFO | Checking dates
+2024-01-11 08:39:08,234 | __main__ | INFO | Checking dates finished. Number of pages: 6
+2024-01-11 08:39:08,234 | __main__ | INFO | Getting the results
+2024-01-11 08:39:20,712 | __main__ | INFO | The results has been gotten
+2024-01-11 08:39:20,712 | __main__ | INFO | Exporting the results to Excel file
+2024-01-11 08:39:25,292 | __main__ | INFO | The results has been exported successfully
+2024-01-11 08:43:28,543 | __main__ | INFO | PROCCESS STARTED
+2024-01-11 08:43:28,543 | __main__ | INFO | Running script
+2024-01-11 08:43:34,176 | __main__ | INFO | Open browser: The browser was opened successfully
+2024-01-11 08:43:34,177 | __main__ | INFO | Checking dates
+2024-01-11 08:44:05,129 | __main__ | INFO | Checking dates finished. Number of pages: 6
+2024-01-11 08:44:05,129 | __main__ | INFO | Getting the results
+2024-01-11 08:44:17,498 | __main__ | INFO | The results has been gotten
+2024-01-11 08:44:17,498 | __main__ | INFO | Exporting the results to Excel file
+2024-01-11 08:44:23,027 | __main__ | INFO | The results has been exported successfully
+2024-01-11 08:44:23,038 | __main__ | INFO | PROCCESS FINISHED
+2024-01-11 09:56:23,603 | __main__ | INFO | PROCCESS STARTED
+2024-01-11 09:56:23,619 | __main__ | INFO | Running script
+2024-01-11 09:56:32,226 | __main__ | INFO | Open browser: The browser was opened successfully
+2024-01-11 09:56:32,226 | __main__ | INFO | Checking dates
+2024-01-11 09:57:03,048 | __main__ | INFO | Checking dates finished. Number of pages: 6
+2024-01-11 09:57:03,048 | __main__ | INFO | Getting the results
+2024-01-11 09:57:14,628 | __main__ | INFO | The results has been gotten
+2024-01-11 09:57:14,641 | __main__ | INFO | Exporting the results to Excel file
+2024-01-11 09:57:33,814 | __main__ | INFO | The results has been exported successfully
+2024-01-11 09:57:33,814 | __main__ | INFO | Starting downloading the pictures
+2024-01-11 09:57:36,813 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:38,934 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:40,987 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:42,421 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:44,720 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:45,923 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:47,549 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:48,716 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:50,201 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:51,950 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:54,049 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:55,833 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:57,000 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:58,166 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:57:59,733 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:00,898 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:02,051 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:03,451 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:05,265 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:06,816 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:08,039 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:09,287 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:10,990 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:12,133 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:13,900 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:15,250 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:17,069 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:18,388 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:19,738 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:20,882 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:22,048 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:23,209 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:24,365 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:25,548 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:26,717 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:26,717 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:27,902 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:29,087 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:30,268 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:31,415 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:32,635 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:33,818 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:35,018 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:36,199 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:37,366 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:38,551 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:39,719 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:40,866 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:42,051 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:43,251 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:44,419 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:45,582 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:46,736 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:47,916 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:49,117 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:49,117 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:50,298 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:51,500 | __main__ | INFO | The pictures has been downloaded successfully
+2024-01-11 09:58:51,500 | __main__ | INFO | PROCCESS FINISHED

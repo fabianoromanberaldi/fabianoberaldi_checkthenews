@@ -1,0 +1,4 @@
+rpaframework
+pandas
+pytz
+wget
