@@ -53,8 +53,8 @@ class NewYorkTimesScraper():
         """Build the url, based on text filter and quantity of months
 
         Args:
-            filter (str): Text to be seeked
-            months (int): Months (Ex.: 0: current month, 1: today - 1 month, 2: today - 2 months, etc...)
+            filter (str): Search phrase
+            months (int): Number of months for which you need to receive news (if 0, means current month)
 
         Returns:
             str: str
@@ -116,9 +116,9 @@ class NewYorkTimesScraper():
         """Open search
 
         Args:
-            filter (str): Text to be seeked
-            months (int): Amount of months of the news. If 0 (zero), means current month
-            browser (str): The values must be: 'chrome', 'edge' or 'firefox'
+            filter (str): Search phrase
+            months (int): Number of months for which you need to receive news (if 0, means current month)
+            browser (str): browser where you want to run the robot. The values must be: 'chrome', 'edge' or 'firefox'
 
         Returns:
             _type_: dict
