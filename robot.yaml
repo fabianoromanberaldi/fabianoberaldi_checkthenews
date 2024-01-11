@@ -1,0 +1,6 @@
+tasks:
+  Trigger start script:
+    shell: python main.py
+artifactsDir: output
+PATH:
+  - .
