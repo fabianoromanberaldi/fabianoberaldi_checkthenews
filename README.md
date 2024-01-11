@@ -1,4 +1,4 @@
-# Check the new in NY Times site
+# Check the news in NY Times site
 ## Web Scrapper
 
 ### Configurations
