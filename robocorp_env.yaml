@@ -13,5 +13,8 @@ dependencies:
     - rpaframework-aws==5.2.8
     - rpaframework-google==7.0.3
     - rpaframework-recognition==5.1.2
+    - pandas
+    - pytz
+    - wget
 rccPostInstall:
   - rfbrowser init
