@@ -1,20 +1,13 @@
-name:
-robocorp_rpa
 channels:
   - conda-forge
 dependencies:
-  - python=3.9.16
-  - tesseract=4.1.1
-  - nodejs=16.14.2
-  - pip=22.1.2
+  - python=3.10.12                # https://pyreadiness.org/3.10
+  - pip=23.2.1                    # https://pip.pypa.io/en/stable/news
+  - robocorp-truststore=0.8.0     # https://pypi.org/project/robocorp-truststore/
   - pandas=1.5.2
   - pytz
   - wget
   - pip:
-    - robotframework-browser==17.2.0
-    - rpaframework==24.1.2
-    - rpaframework-aws==5.2.8
-    - rpaframework-google==7.0.3
-    - rpaframework-recognition==5.1.2
-rccPostInstall:
-  - rfbrowser init
+    - rpaframework==27.7.0        # https://rpaframework.org/releasenotes.html
+    - robocorp==1.2.4             # https://pypi.org/project/robocorp
+    - robocorp-browser==2.2.1     # https://pypi.org/project/robocorp-browser

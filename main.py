@@ -43,7 +43,7 @@ def run_script():
     obj_nwt = NewYorkTimesScraper(
         timeout=config.timeout_in_seconds
     )
-    
+
     list_location = "//ol[@data-testid='search-results']"
     list_items_location = "//li[@data-testid='search-bodega-result']"
 
@@ -61,11 +61,11 @@ def run_script():
 
         continue_check_dates = True
         page_number = 0
-        
+
         logger.info("Checking dates")
         while continue_check_dates:
             time.sleep(0.5)
-            
+
             check_dates = obj_nwt.check_results_dates(
                 list_path=list_location,
                 list_items_path=list_items_location,
@@ -77,12 +77,12 @@ def run_script():
             print("Page number: ", page_number)
 
             continue_check_dates = check_dates['continue']
-            
+
             if check_dates['status'] == "NOK":
                 logger.error(f"Checking dates: {check_dates['message']}")
 
         logger.info(f"Checking dates finished. Number of pages: {page_number}")
-        
+
         logger.info("Getting the results")
         get_results = obj_nwt.get_results(
             list_path=list_location,
@@ -90,7 +90,7 @@ def run_script():
 
         if get_results['status'] == 'OK':
             logger.info("The results has been gotten")
-            
+
             logger.info("Exporting the results to Excel file")
             try:
                 df = pd.DataFrame(get_results['results'])
@@ -104,9 +104,9 @@ def run_script():
                     index=False
                 )
                 logger.info("The results has been exported successfully")
-            except:         
+            except:
                 logger.error(f"FAILED to export the results to Excel file.")
-                
+
             if config.download_images:
                 download_images(
                     excel_file_path="nyt_news.xlsx",
@@ -126,11 +126,11 @@ def download_images(excel_file_path: str, folder_to_export_path: str) -> dict:
         # export Excel data to DataFrame
         df = pd.read_excel(excel_file_path).fillna("")
         print(df)
-        
+
         # get links from DataFrame
         for i, item in df.iterrows():
             pic_url = item['picture_link']
-            
+
             # get the name of the image
             if pic_url != "":
                 # Parse the URL into a ParseResult object
@@ -144,23 +144,16 @@ def download_images(excel_file_path: str, folder_to_export_path: str) -> dict:
 
                 # Get the name attribute of the Path object
                 picture_name = p.name
-                print(picture_name)
-                
+
                 time.sleep(1)
                 wget.download(
                     url=pic_url,
                     out=f"images\\{picture_name}"
                 )
-                
+
                 print(f"Picture {picture_name} downloaded")
-                
+
             logger.info("The pictures has been downloaded successfully")
-            
+
     except Exception as ex:
         logger.error(f"FAILED to download the pictures. Error: {ex}")
-
-
-if __name__ == "__main__":
-    logger.info("PROCCESS STARTED")
-    run_script()
-    logger.info("PROCCESS FINISHED")
