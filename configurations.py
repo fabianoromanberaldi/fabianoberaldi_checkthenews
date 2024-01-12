@@ -6,4 +6,4 @@ class Configuration:
         self.months = 1
         self.timeout_in_seconds = 10
         self.browser = "chrome"
-        self.download_images = False
+        self.download_images = True

@@ -1,4 +1,4 @@
 rpaframework
 pandas
 pytz
-wget
+requests

@@ -1,5 +1,7 @@
 from robocorp.tasks import task
+
 import main
+
 
 @task
 def minimal_task():

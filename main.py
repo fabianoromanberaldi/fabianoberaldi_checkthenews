@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import pandas as pd
-import wget
+import requests
 from pytz import timezone
 
 from configurations import Configuration
@@ -146,10 +146,10 @@ def download_images(excel_file_path: str, folder_to_export_path: str) -> dict:
                 picture_name = p.name
 
                 time.sleep(1)
-                wget.download(
-                    url=pic_url,
-                    out=f"images\\{picture_name}"
-                )
+
+                response = requests.get(pic_url)
+                with open(f"images\\{picture_name}", "wb") as pic_file:
+                    pic_file.write(response.content)
 
                 print(f"Picture {picture_name} downloaded")
 

@@ -102,3 +102,68 @@
 2024-01-11 09:58:50,298 | __main__ | INFO | The pictures has been downloaded successfully
 2024-01-11 09:58:51,500 | __main__ | INFO | The pictures has been downloaded successfully
 2024-01-11 09:58:51,500 | __main__ | INFO | PROCCESS FINISHED
+2024-01-12 12:23:19,084 | main | INFO | Running script
+2024-01-12 12:23:33,071 | main | INFO | Open browser: The browser was opened successfully
+2024-01-12 12:23:33,071 | main | INFO | Checking dates
+2024-01-12 12:24:06,443 | main | INFO | Checking dates finished. Number of pages: 6
+2024-01-12 12:24:06,443 | main | INFO | Getting the results
+2024-01-12 12:24:18,943 | main | INFO | The results has been gotten
+2024-01-12 12:24:18,943 | main | INFO | Exporting the results to Excel file
+2024-01-12 12:24:28,755 | main | INFO | The results has been exported successfully
+2024-01-12 12:24:28,755 | main | INFO | Starting downloading the pictures
+2024-01-12 12:24:32,567 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:34,061 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:35,521 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:37,006 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:38,490 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:39,986 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:41,427 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:42,942 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:44,432 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:45,911 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:47,417 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:48,881 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:50,395 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:51,869 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:53,334 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:55,099 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:56,600 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:58,239 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:24:59,709 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:01,448 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:02,911 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:04,459 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:05,943 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:07,490 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:09,025 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:10,537 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:12,052 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:13,493 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:14,974 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:16,552 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:18,333 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:19,786 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:21,395 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:22,865 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:24,411 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:25,880 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:27,443 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:27,443 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:28,943 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:30,775 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:32,272 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:33,787 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:35,393 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:36,927 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:38,447 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:40,005 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:41,458 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:42,943 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:44,412 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:46,119 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:47,599 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:49,100 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:50,572 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:52,080 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:53,505 | main | INFO | The pictures has been downloaded successfully
+2024-01-12 12:25:55,241 | main | INFO | The pictures has been downloaded successfully
