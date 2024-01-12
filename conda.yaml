@@ -6,7 +6,7 @@ dependencies:
   - robocorp-truststore=0.8.0     # https://pypi.org/project/robocorp-truststore/
   - pandas=1.5.2
   - pytz=2023.3
-  - wget=3.2
+  - requests
   - pip:
     - rpaframework==27.7.0        # https://rpaframework.org/releasenotes.html
     - robocorp==1.2.4             # https://pypi.org/project/robocorp
