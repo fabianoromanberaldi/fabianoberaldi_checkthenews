@@ -5,6 +5,6 @@ import main
 
 @task
 def minimal_task():
-    message = "Hello"
-    message = message + " World!"
+    message = "Initializing"
+    message = message + " the robot"
     main.run_script()
