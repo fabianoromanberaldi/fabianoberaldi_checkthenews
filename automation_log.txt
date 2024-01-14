@@ -204,3 +204,21 @@
 2024-01-14 08:51:04,710 | main | INFO | The results has been gotten
 2024-01-14 08:51:04,710 | main | INFO | Exporting the results to Excel file
 2024-01-14 08:51:22,228 | main | INFO | The results has been exported successfully
+2024-01-14 09:56:33,460 | main | INFO | Running script
+2024-01-14 09:56:41,116 | main | INFO | Open browser: The browser was opened successfully
+2024-01-14 09:56:41,127 | main | INFO | Checking dates
+2024-01-14 09:56:55,974 | main | INFO | Checking dates finished. Number of pages: 3
+2024-01-14 09:56:55,989 | main | INFO | Getting the results
+2024-01-14 09:57:05,209 | main | INFO | The results has been gotten
+2024-01-14 09:57:05,212 | main | INFO | Exporting the results to Excel file
+2024-01-14 09:57:18,925 | main | INFO | The results has been exported successfully
+2024-01-14 12:19:01,832 | main | INFO | Running script
+2024-01-14 12:19:12,925 | main | INFO | Open browser: The browser was opened successfully
+2024-01-14 12:19:12,928 | main | INFO | Checking dates
+2024-01-14 12:19:29,675 | main | INFO | Checking dates finished. Number of pages: 3
+2024-01-14 12:19:29,684 | main | INFO | Getting the results
+2024-01-14 12:19:39,379 | main | INFO | The results has been gotten
+2024-01-14 12:19:39,390 | main | INFO | Exporting the results to Excel file
+2024-01-14 12:19:57,891 | main | INFO | The results has been exported successfully
+2024-01-14 12:19:57,895 | main | INFO | Starting downloading the pictures
+2024-01-14 12:19:59,548 | main | ERROR | FAILED to download the pictures. Error: [Errno 2] No such file or directory: 'output/nyt_news.xlsx'

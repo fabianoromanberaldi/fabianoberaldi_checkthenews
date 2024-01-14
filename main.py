@@ -109,8 +109,8 @@ def run_script():
 
             if config.download_images:
                 download_images(
-                    excel_file_path="nyt_news.xlsx",
-                    folder_to_export_path="images"
+                    excel_file_path="output/nyt_news.xlsx",
+                    folder_to_export_path="output/images"
                 )
 
         else:
