@@ -167,3 +167,40 @@
 2024-01-12 12:25:52,080 | main | INFO | The pictures has been downloaded successfully
 2024-01-12 12:25:53,505 | main | INFO | The pictures has been downloaded successfully
 2024-01-12 12:25:55,241 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:16:10,678 | main | INFO | Running script
+2024-01-13 13:16:27,182 | main | INFO | Open browser: The browser was opened successfully
+2024-01-13 13:16:27,185 | main | INFO | Checking dates
+2024-01-13 13:16:43,224 | main | INFO | Checking dates finished. Number of pages: 3
+2024-01-13 13:16:43,224 | main | INFO | Getting the results
+2024-01-13 13:16:51,931 | main | INFO | The results has been gotten
+2024-01-13 13:16:51,931 | main | INFO | Exporting the results to Excel file
+2024-01-13 13:17:10,301 | main | INFO | The results has been exported successfully
+2024-01-13 13:17:10,301 | main | INFO | Starting downloading the pictures
+2024-01-13 13:17:13,425 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:14,920 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:16,434 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:18,283 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:19,856 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:21,394 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:23,188 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:24,639 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:26,399 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:27,930 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:29,502 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:30,985 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:32,426 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:34,068 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:35,474 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:36,939 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:39,865 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:41,397 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:43,078 | main | INFO | The pictures has been downloaded successfully
+2024-01-13 13:17:44,855 | main | INFO | The pictures has been downloaded successfully
+2024-01-14 08:50:32,094 | main | INFO | Running script
+2024-01-14 08:50:39,494 | main | INFO | Open browser: The browser was opened successfully
+2024-01-14 08:50:39,503 | main | INFO | Checking dates
+2024-01-14 08:50:55,510 | main | INFO | Checking dates finished. Number of pages: 3
+2024-01-14 08:50:55,521 | main | INFO | Getting the results
+2024-01-14 08:51:04,710 | main | INFO | The results has been gotten
+2024-01-14 08:51:04,710 | main | INFO | Exporting the results to Excel file
+2024-01-14 08:51:22,228 | main | INFO | The results has been exported successfully

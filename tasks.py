@@ -4,7 +4,7 @@ import main
 
 
 @task
-def minimal_task():
+def run_task():
     message = "Initializing"
     message = message + " the robot"
     main.run_script()
