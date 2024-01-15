@@ -99,7 +99,7 @@ def run_script():
 
                 # export the result to excel
                 df_expo.to_excel(
-                    excel_writer='nyt_news.xlsx',
+                    excel_writer='output/nyt_news.xlsx',
                     sheet_name='news',
                     index=False
                 )

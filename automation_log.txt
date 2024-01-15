@@ -222,3 +222,32 @@
 2024-01-14 12:19:57,891 | main | INFO | The results has been exported successfully
 2024-01-14 12:19:57,895 | main | INFO | Starting downloading the pictures
 2024-01-14 12:19:59,548 | main | ERROR | FAILED to download the pictures. Error: [Errno 2] No such file or directory: 'output/nyt_news.xlsx'
+2024-01-15 19:50:04,849 | main | INFO | Running script
+2024-01-15 19:50:22,882 | main | INFO | Open browser: The browser was opened successfully
+2024-01-15 19:50:22,885 | main | INFO | Checking dates
+2024-01-15 19:50:39,606 | main | INFO | Checking dates finished. Number of pages: 3
+2024-01-15 19:50:39,606 | main | INFO | Getting the results
+2024-01-15 19:50:49,184 | main | INFO | The results has been gotten
+2024-01-15 19:50:49,200 | main | INFO | Exporting the results to Excel file
+2024-01-15 19:51:04,452 | main | INFO | The results has been exported successfully
+2024-01-15 19:51:04,465 | main | INFO | Starting downloading the pictures
+2024-01-15 19:51:08,520 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:10,162 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:11,697 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:13,160 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:14,819 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:16,562 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:18,152 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:19,621 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:21,713 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:23,337 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:24,896 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:26,490 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:28,086 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:29,590 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:31,009 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:32,448 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:33,876 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:35,562 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:37,039 | main | INFO | The pictures has been downloaded successfully
+2024-01-15 19:51:38,490 | main | INFO | The pictures has been downloaded successfully
