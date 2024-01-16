@@ -1,0 +1,27 @@
+1705434368217	geckodriver	INFO	Listening on 127.0.0.1:60481
+1705434371877	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "60482" "--remote ... ocalhost" "-no-remote" "-profile" "C:\\Users\\fabia\\AppData\\Local\\robocorp\\temp\\a50f256677720b99\\rust_mozprofilehOmCn5"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1705434373367	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1705434373745	Marionette	INFO	Listening on port 60490
+WebDriver BiDi listening on ws://127.0.0.1:60482
+Read port: 60490
+1705434374206	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:60482/devtools/browser/da933744-cdd3-42b2-81a5-085cdf991bed
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfAzqo1rYDLgYhmTnSjPqw&gtm_preview=env-130&gtm_cookies_win=x, line 1: unreachable code after return statement
+1705434408226	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1705434431203	Marionette	INFO	Stopped listening on port 60490
+JavaScript warning: https://www.nytimes.com/vi-assets/static-assets/main-a83ce952e6152db807a3.js, line 65: Script terminated by timeout at:
+i0II/t.default/g</<@https://www.nytimes.com/vi-assets/static-assets/main-a83ce952e6152db807a3.js:65:4540
+ZGn5/u/</r</<@https://www.nytimes.com/vi-assets/static-assets/main-a83ce952e6152db807a3.js:41:1455
+ZGn5/u/</r<@https://www.nytimes.com/vi-assets/static-assets/main-a83ce952e6152db807a3.js:41:1569
+
+Dynamically enable window occlusion 1

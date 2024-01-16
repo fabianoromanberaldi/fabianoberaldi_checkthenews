@@ -1,18 +1,13 @@
-
 import logging
 import sys
 import time
 from datetime import datetime
-from pathlib import Path
-from urllib.parse import urlparse
 from robocorp.tasks import task
 
 from RPA.HTTP import HTTP
-from RPA.Excel.Files import Files
 
 import pandas as pd
 
-import requests
 from pytz import timezone
 
 from configurations import Configuration
@@ -113,7 +108,7 @@ def run_script():
                 logger.error(f"FAILED to export the results to Excel file.")
 
             if config.download_images:
-                download_images1(
+                download_images(
                     excel_file_path="output/nyt_news.xlsx"
                 )
 
@@ -124,50 +119,11 @@ def run_script():
         logger.error(f"Open browser: {open_search['message']}")
 
 
-def download_images(excel_file_path: str, folder_to_export_path: str) -> dict:
-    try:
-        logger.info("Starting downloading the pictures")
-        # export Excel data to DataFrame
-        df = pd.read_excel(excel_file_path).fillna("")
-        print(df)
-
-        # get links from DataFrame
-        for i, item in df.iterrows():
-            pic_url = item['picture_link']
-
-            # get the name of the image
-            if pic_url != "":
-                # Parse the URL into a ParseResult object
-                result = urlparse(pic_url)
-
-                # Get the path component of the URL
-                path = result.path
-
-                # Create a Path object from the path
-                p = Path(path)
-
-                # Get the name attribute of the Path object
-                picture_name = p.name
-
-                time.sleep(1)
-
-                response = requests.get(pic_url)
-                with open(f"images\\{picture_name}", "wb") as pic_file:
-                    pic_file.write(response.content)
-
-                print(f"Picture {picture_name} downloaded")
-
-            logger.info("The pictures has been downloaded successfully")
-
-    except Exception as ex:
-        logger.error(f"FAILED to download the pictures. Error: {ex}")
-
-
-def download_images1(excel_file_path: str):
+def download_images(excel_file_path: str):
     try:
         logger.info("Starting downloading the pictures")
         http = HTTP()
-        
+
         # export Excel data to DataFrame
         df = pd.read_excel(excel_file_path).fillna("")
         print(df)

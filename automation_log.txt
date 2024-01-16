@@ -363,3 +363,28 @@ receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild
 2024-01-16 15:32:07,513 | tasks | INFO | The results has been exported successfully
 2024-01-16 15:32:07,516 | tasks | INFO | Starting downloading the pictures
 2024-01-16 15:32:26,733 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 16:46:03,083 | tasks | INFO | Running script
+2024-01-16 16:46:21,870 | RPA.Browser.Selenium | WARNING | Attempting to maximize browser in headless mode without knowning the screen resolution. (ignoring maximization)
+2024-01-16 16:46:21,878 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 16:46:21,880 | tasks | INFO | Checking dates
+2024-01-16 16:46:25,863 | tasks | ERROR | Checking dates: FAILED to check results dates. Error: Message: Move target (683, 1814) is out of bounds of viewport dimensions (1366, 635)
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+MoveTargetOutOfBoundsError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:475:5
+assertInViewPort@chrome://remote/content/shared/webdriver/Actions.sys.mjs:2307:11
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1093:21
+dispatch/pendingEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1976:14
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1975:39
+dispatch/chainEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1890:27
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1892:7
+performActions@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:503:23
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:143:31
+
+2024-01-16 16:46:25,870 | tasks | INFO | Checking dates finished. Number of pages: 1
+2024-01-16 16:46:25,871 | tasks | INFO | Getting the results
+2024-01-16 16:46:27,089 | tasks | INFO | The results has been gotten
+2024-01-16 16:46:27,094 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 16:46:43,960 | tasks | INFO | The results has been exported successfully
+2024-01-16 16:46:43,970 | tasks | INFO | Starting downloading the pictures
+2024-01-16 16:47:05,807 | tasks | INFO | The pictures has been downloaded successfully

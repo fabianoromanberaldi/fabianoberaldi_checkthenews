@@ -16,6 +16,7 @@ class NewYorkTimesScraper():
             value=timedelta(seconds=self.timeout)
         )
         self.browser.auto_close = True
+        self.browser.headless = True
 
     def _date_range(self, months: int) -> dict:
         """Return the 'Start Date' and 'End Date' depending on the given month
