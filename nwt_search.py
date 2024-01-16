@@ -110,15 +110,14 @@ class NewYorkTimesScraper():
         return formated_date
 
     def open_search(self, filter: str,
-                    months: int = 0,
-                    browser: str = "chrome"
+                    months: int = 0
                     ) -> dict:
         """Open search
 
         Args:
             filter (str): Search phrase
-            months (int): Number of months for which you need to receive news (if 0, means current month)
-            browser (str): browser where you want to run the robot. The values must be: 'chrome', 'edge' or 'firefox'
+            months (int): Number of months for which you need to receive news
+                          (if 0, means current month)
 
         Returns:
             _type_: dict
@@ -129,12 +128,8 @@ class NewYorkTimesScraper():
 
             url_builder = self._url_builder(filter, months)
 
-            print("=========================")
-            print(url_builder)
-
             self.browser.open_browser(
-                url=url_builder['url'],
-                browser=browser
+                url=url_builder['url']
             )
 
             self.browser.maximize_browser_window()

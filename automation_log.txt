@@ -251,3 +251,91 @@
 2024-01-15 19:51:35,562 | main | INFO | The pictures has been downloaded successfully
 2024-01-15 19:51:37,039 | main | INFO | The pictures has been downloaded successfully
 2024-01-15 19:51:38,490 | main | INFO | The pictures has been downloaded successfully
+2024-01-16 14:38:49,389 | tasks | INFO | Running script
+2024-01-16 14:39:00,830 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 14:39:00,833 | tasks | INFO | Checking dates
+2024-01-16 14:39:16,185 | tasks | INFO | Checking dates finished. Number of pages: 3
+2024-01-16 14:39:16,192 | tasks | INFO | Getting the results
+2024-01-16 14:39:24,655 | tasks | INFO | The results has been gotten
+2024-01-16 14:39:24,658 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 14:39:25,952 | tasks | INFO | The results has been exported successfully
+2024-01-16 14:39:25,968 | tasks | INFO | Starting downloading the pictures
+2024-01-16 14:39:25,970 | tasks | ERROR | FAILED to download the pictures. Error: [Errno 22] Invalid argument: 'output\nyt_news.xlsx'
+2024-01-16 14:49:09,895 | tasks | INFO | Running script
+2024-01-16 14:49:21,515 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 14:49:21,526 | tasks | INFO | Checking dates
+2024-01-16 14:49:36,588 | tasks | INFO | Checking dates finished. Number of pages: 3
+2024-01-16 14:49:36,589 | tasks | INFO | Getting the results
+2024-01-16 14:49:45,078 | tasks | INFO | The results has been gotten
+2024-01-16 14:49:45,086 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 14:49:45,888 | tasks | INFO | The results has been exported successfully
+2024-01-16 14:49:45,900 | tasks | INFO | Starting downloading the pictures
+2024-01-16 14:50:20,188 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 14:51:56,126 | tasks | INFO | Running script
+2024-01-16 14:52:01,238 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 14:52:01,248 | tasks | INFO | Checking dates
+2024-01-16 14:52:15,554 | tasks | INFO | Checking dates finished. Number of pages: 3
+2024-01-16 14:52:15,555 | tasks | INFO | Getting the results
+2024-01-16 14:52:23,633 | tasks | INFO | The results has been gotten
+2024-01-16 14:52:23,642 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 14:52:23,913 | tasks | INFO | The results has been exported successfully
+2024-01-16 14:52:23,917 | tasks | INFO | Starting downloading the pictures
+2024-01-16 14:52:54,928 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 14:53:54,646 | tasks | INFO | Running script
+2024-01-16 14:54:00,643 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 14:54:00,645 | tasks | INFO | Checking dates
+2024-01-16 14:54:14,841 | tasks | INFO | Checking dates finished. Number of pages: 3
+2024-01-16 14:54:14,854 | tasks | INFO | Getting the results
+2024-01-16 14:54:23,611 | tasks | INFO | The results has been gotten
+2024-01-16 14:54:23,618 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 14:54:23,734 | tasks | INFO | The results has been exported successfully
+2024-01-16 14:54:23,737 | tasks | INFO | Starting downloading the pictures
+2024-01-16 14:54:56,387 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 15:01:50,187 | tasks | INFO | Running script
+2024-01-16 15:02:12,894 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 15:02:12,902 | tasks | INFO | Checking dates
+2024-01-16 15:02:16,188 | tasks | ERROR | Checking dates: FAILED to check results dates. Error: Message: Move target (683, 1791) is out of bounds of viewport dimensions (1366, 635)
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+MoveTargetOutOfBoundsError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:475:5
+assertInViewPort@chrome://remote/content/shared/webdriver/Actions.sys.mjs:2307:11
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1093:21
+dispatch/pendingEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1976:14
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1975:39
+dispatch/chainEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1890:27
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1892:7
+performActions@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:503:23
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:143:31
+
+2024-01-16 15:02:16,190 | tasks | INFO | Checking dates finished. Number of pages: 1
+2024-01-16 15:02:16,191 | tasks | INFO | Getting the results
+2024-01-16 15:02:17,360 | tasks | INFO | The results has been gotten
+2024-01-16 15:02:17,361 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 15:02:17,795 | tasks | INFO | The results has been exported successfully
+2024-01-16 15:02:17,801 | tasks | INFO | Starting downloading the pictures
+2024-01-16 15:02:35,414 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 15:16:45,523 | tasks | INFO | Running script
+2024-01-16 15:16:58,812 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 15:16:58,824 | tasks | INFO | Checking dates
+2024-01-16 15:17:02,037 | tasks | ERROR | Checking dates: FAILED to check results dates. Error: Message: Move target (683, 1791) is out of bounds of viewport dimensions (1366, 635)
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+MoveTargetOutOfBoundsError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:475:5
+assertInViewPort@chrome://remote/content/shared/webdriver/Actions.sys.mjs:2307:11
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1093:21
+dispatch/pendingEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1976:14
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1975:39
+dispatch/chainEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1890:27
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1892:7
+performActions@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:503:23
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:143:31
+
+2024-01-16 15:17:02,048 | tasks | INFO | Checking dates finished. Number of pages: 1
+2024-01-16 15:17:02,049 | tasks | INFO | Getting the results
+2024-01-16 15:17:03,138 | tasks | INFO | The results has been gotten
+2024-01-16 15:17:03,148 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 15:17:03,259 | tasks | INFO | The results has been exported successfully
+2024-01-16 15:17:03,264 | tasks | INFO | Starting downloading the pictures
+2024-01-16 15:17:20,611 | tasks | INFO | The pictures has been downloaded successfully
