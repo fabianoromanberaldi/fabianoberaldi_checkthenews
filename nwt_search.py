@@ -147,7 +147,7 @@ class NewYorkTimesScraper():
                 "start_date": url_builder['start_date'],
                 "end_date": url_builder['end_date'],
                 "url": url_builder['url'],
-                "message": f"FAILED to open the browser {browser}. Error: {ex}"
+                "message": f"FAILED to open the browser. Error: {ex}"
             }
 
     def click_on_element(self, element_path: str):
