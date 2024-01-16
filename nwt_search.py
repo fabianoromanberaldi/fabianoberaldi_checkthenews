@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 from RPA.Browser.Selenium import Selenium
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+#from selenium.webdriver.firefox.options import Options
 
 
 class NewYorkTimesScraper():
@@ -16,7 +17,6 @@ class NewYorkTimesScraper():
             value=timedelta(seconds=self.timeout)
         )
         self.browser.auto_close = True
-        self.browser.headless = True
 
     def _date_range(self, months: int) -> dict:
         """Return the 'Start Date' and 'End Date' depending on the given month
@@ -130,7 +130,8 @@ class NewYorkTimesScraper():
             url_builder = self._url_builder(filter, months)
 
             self.browser.open_browser(
-                url=url_builder['url']
+                url=url_builder['url'],
+                browser="headlessfirefox"
             )
 
             self.browser.maximize_browser_window()

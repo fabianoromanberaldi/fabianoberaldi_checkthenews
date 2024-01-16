@@ -388,3 +388,82 @@ receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild
 2024-01-16 16:46:43,960 | tasks | INFO | The results has been exported successfully
 2024-01-16 16:46:43,970 | tasks | INFO | Starting downloading the pictures
 2024-01-16 16:47:05,807 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 17:13:26,681 | tasks | INFO | Running script
+2024-01-16 17:13:50,184 | RPA.Browser.Selenium | WARNING | Attempting to maximize browser in headless mode without knowning the screen resolution. (ignoring maximization)
+2024-01-16 17:13:50,184 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 17:13:50,194 | tasks | INFO | Checking dates
+2024-01-16 17:13:53,930 | tasks | ERROR | Checking dates: FAILED to check results dates. Error: Message: Move target (683, 1814) is out of bounds of viewport dimensions (1366, 635)
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+MoveTargetOutOfBoundsError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:475:5
+assertInViewPort@chrome://remote/content/shared/webdriver/Actions.sys.mjs:2307:11
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1093:21
+dispatch/pendingEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1976:14
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1975:39
+dispatch/chainEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1890:27
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1892:7
+performActions@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:503:23
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:143:31
+
+2024-01-16 17:13:53,937 | tasks | INFO | Checking dates finished. Number of pages: 1
+2024-01-16 17:13:53,938 | tasks | INFO | Getting the results
+2024-01-16 17:13:55,236 | tasks | INFO | The results has been gotten
+2024-01-16 17:13:55,241 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 17:14:03,660 | tasks | INFO | The results has been exported successfully
+2024-01-16 17:14:03,674 | tasks | INFO | Starting downloading the pictures
+2024-01-16 17:14:22,301 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 17:21:43,279 | tasks | INFO | Running script
+2024-01-16 17:23:51,994 | tasks | INFO | Running script
+2024-01-16 17:24:45,638 | tasks | INFO | Running script
+2024-01-16 17:32:08,248 | tasks | INFO | Running script
+2024-01-16 17:34:41,818 | tasks | INFO | Running script
+2024-01-16 17:39:44,259 | tasks | INFO | Running script
+2024-01-16 17:40:00,315 | RPA.Browser.Selenium | WARNING | Attempting to maximize browser in headless mode without knowning the screen resolution. (ignoring maximization)
+2024-01-16 17:40:00,315 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 17:40:00,332 | tasks | INFO | Checking dates
+2024-01-16 17:40:04,049 | tasks | ERROR | Checking dates: FAILED to check results dates. Error: Message: Move target (683, 1814) is out of bounds of viewport dimensions (1366, 635)
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+MoveTargetOutOfBoundsError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:475:5
+assertInViewPort@chrome://remote/content/shared/webdriver/Actions.sys.mjs:2307:11
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1093:21
+dispatch/pendingEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1976:14
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1975:39
+dispatch/chainEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1890:27
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1892:7
+performActions@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:503:23
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:143:31
+
+2024-01-16 17:40:04,063 | tasks | INFO | Checking dates finished. Number of pages: 1
+2024-01-16 17:40:04,064 | tasks | INFO | Getting the results
+2024-01-16 17:40:06,593 | tasks | INFO | The results has been gotten
+2024-01-16 17:40:06,597 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 17:40:14,094 | tasks | INFO | The results has been exported successfully
+2024-01-16 17:40:14,105 | tasks | INFO | Starting downloading the pictures
+2024-01-16 17:40:33,303 | tasks | INFO | The pictures has been downloaded successfully
+2024-01-16 17:48:50,626 | tasks | INFO | Running script
+2024-01-16 17:49:02,828 | tasks | INFO | Open browser: The browser was opened successfully
+2024-01-16 17:49:02,838 | tasks | INFO | Checking dates
+2024-01-16 17:49:05,766 | tasks | ERROR | Checking dates: FAILED to check results dates. Error: Message: Move target (683, 1838) is out of bounds of viewport dimensions (1366, 683)
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+MoveTargetOutOfBoundsError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:475:5
+assertInViewPort@chrome://remote/content/shared/webdriver/Actions.sys.mjs:2307:11
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1093:21
+dispatch/pendingEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1976:14
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1975:39
+dispatch/chainEvents<@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1890:27
+dispatch@chrome://remote/content/shared/webdriver/Actions.sys.mjs:1892:7
+performActions@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:503:23
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:143:31
+
+2024-01-16 17:49:05,773 | tasks | INFO | Checking dates finished. Number of pages: 1
+2024-01-16 17:49:05,774 | tasks | INFO | Getting the results
+2024-01-16 17:49:06,893 | tasks | INFO | The results has been gotten
+2024-01-16 17:49:06,895 | tasks | INFO | Exporting the results to Excel file
+2024-01-16 17:49:11,172 | tasks | INFO | The results has been exported successfully
+2024-01-16 17:49:11,181 | tasks | INFO | Starting downloading the pictures
+2024-01-16 17:49:29,663 | tasks | INFO | The pictures has been downloaded successfully
