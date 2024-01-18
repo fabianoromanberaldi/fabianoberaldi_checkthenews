@@ -6,17 +6,19 @@ from dateutil.relativedelta import relativedelta
 from RPA.Browser.Selenium import Selenium
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-#from selenium.webdriver.firefox.options import Options
+
+from configurations import Configuration
 
 
 class NewYorkTimesScraper():
     def __init__(self, timeout: int) -> None:
         self.browser = Selenium()
+        self.configuration = Configuration()
         self.timeout = timeout
         self.browser.set_selenium_timeout(
             value=timedelta(seconds=self.timeout)
         )
-        self.browser.auto_close = True
+        self.browser.auto_close = self.configuration.auto_close
 
     def _date_range(self, months: int) -> dict:
         """Return the 'Start Date' and 'End Date' depending on the given month
@@ -55,7 +57,8 @@ class NewYorkTimesScraper():
 
         Args:
             filter (str): Search phrase
-            months (int): Number of months for which you need to receive news (if 0, means current month)
+            months (int): Number of months for which you need to receive news \
+                (if 0, means current month)
 
         Returns:
             str: str
@@ -65,7 +68,9 @@ class NewYorkTimesScraper():
 
         # get the data range
         date_range = self._date_range(months)
-        url = f"https://www.nytimes.com/search?dropmab=false&query={filter}&sort=newest&startDate={date_range['start_date']}&endDate={date_range['end_date']}&types=article"
+        url = f"https://www.nytimes.com/search?dropmab=false&query={filter}&"
+        url += f"sort=newest&startDate={date_range['start_date']}&"
+        url += f"endDate={date_range['end_date']}&types=article"
 
         return {
             "filter": filter,
@@ -98,7 +103,8 @@ class NewYorkTimesScraper():
     def _convert_text_to_formatted_date(self,
                                         date_text: str,
                                         format="%Y-%m-%d") -> str:
-        # Try to convert the text to a date object using the format "%b. %d, %Y"
+        # Try to convert the text to a date \
+        # object using the format "%b. %d, %Y"
         try:
             current_year = datetime.today().year
             date = datetime.strptime(date_text, "%b. %d, %Y").date()
@@ -108,41 +114,35 @@ class NewYorkTimesScraper():
             date = datetime.strptime(date_text, "%b. %d, %Y").date()
 
         formated_date = date.strftime(format)
-        return formated_date
+        return formated_date.strip()
 
-    def open_search(self, filter: str,
-                    months: int = 0
-                    ) -> dict:
+    def open_search(self) -> dict:
         """Open search
 
-        Args:
-            filter (str): Search phrase
-            months (int): Number of months for which you need to receive news
-                          (if 0, means current month)
-
         Returns:
-            _type_: dict
+            dict: dictionary
         """
         try:
-            if not isinstance(months, int):
-                months = int(months)
+            url_builder = self._url_builder(
+                filter=self.configuration.search_phrase,
+                months=self.configuration.months
+            )
 
-            url_builder = self._url_builder(filter, months)
-
+            # "headlessfirefox"
             self.browser.open_browser(
                 url=url_builder['url'],
-                browser="headlessfirefox"
+                browser=self.configuration.browser
             )
 
             self.browser.maximize_browser_window()
 
             return {
-                    "status": "OK",
-                    "start_date": url_builder['start_date'],
-                    "end_date": url_builder['end_date'],
-                    "url": url_builder['url'],
-                    "message": "The browser was opened successfully"
-                }
+                "status": "OK",
+                "start_date": url_builder['start_date'],
+                "end_date": url_builder['end_date'],
+                "url": url_builder['url'],
+                "message": "The browser was opened successfully"
+            }
         except Exception as ex:
             return {
                 "status": "NOK",
@@ -152,9 +152,9 @@ class NewYorkTimesScraper():
                 "message": f"FAILED to open the browser. Error: {ex}"
             }
 
-    def click_on_element(self, element_path: str):
+    def click_on_element(self, element_path: str) -> dict:
 
-        try: 
+        try:
             if self.browser.is_element_visible(
                 locator=element_path
             ):
@@ -186,7 +186,7 @@ class NewYorkTimesScraper():
                             close_tracker_button_path: str,
                             show_more_button_path: str,
                             start_date: str
-                            ):
+                            ) -> dict:
         """Check the dates of the results
 
         Args:
@@ -207,6 +207,9 @@ class NewYorkTimesScraper():
             if self.browser.click_element_if_visible(
                 locator=close_tracker_button_path
             ):
+                self.browser.scroll_element_into_view(
+                    locator=close_tracker_button_path
+                )
                 self.browser.click_button(
                     locator=close_tracker_button_path
                 )
@@ -215,14 +218,11 @@ class NewYorkTimesScraper():
             if self.browser.does_page_contain_button(
                 locator=show_more_button_path
             ):
-                self.browser.scroll_element_into_view(
-                    locator=show_more_button_path
-                )
                 self.browser.click_button(
                     locator=show_more_button_path
                 )
 
-            if self._find_element(                
+            if self._find_element(
                 element_path=list_path,
                 timeout=5
             ):
@@ -273,7 +273,7 @@ class NewYorkTimesScraper():
                     return {
                         "status": "OK",
                         "continue": True,
-                        "message": ""                   
+                        "message": ""
                     }
 
         except Exception as ex:
@@ -283,7 +283,10 @@ class NewYorkTimesScraper():
                 "message": f"FAILED to check results dates. Error: {ex}"
             }
 
-    def get_results(self, list_path: str, list_items_path: str) -> list[dict]:
+    def get_results(self, start_date: str,
+                    list_path: str,
+                    list_items_path: str
+                    ) -> dict:
         """Get all loaded results
 
         Args:
@@ -291,7 +294,7 @@ class NewYorkTimesScraper():
             list_items_path (str): List items location
 
         Returns:
-            list[dict]: list
+            _type_: dictionary
         """
 
         lst_results = []
@@ -330,7 +333,7 @@ class NewYorkTimesScraper():
                         if item.find_element(
                                 By.CLASS_NAME,
                                 'css-2fgx4k').is_enabled():
-                            
+
                             title = item.find_element(
                                 By.CLASS_NAME,
                                 'css-2fgx4k').text
@@ -389,16 +392,21 @@ class NewYorkTimesScraper():
                                 title + description)
                         )
 
-                    dict_result = {
-                        "date": date,
-                        "title": title,
-                        "description": description,
-                        "picture_filename": picture_filename,
-                        "picture_link": picture_link,
-                        "has_money": has_money
-                    }
+                    if (
+                        datetime.strptime(date, "%Y-%m-%d")
+                        >= datetime.strptime(start_date, "%Y-%m-%d")
+                    ):
+                        dict_result = {
+                            "date": date,
+                            "title": title,
+                            "description": description,
+                            "picture_filename": picture_filename,
+                            "picture_link": picture_link,
+                            "has_money": has_money,
+                            "total_count": ""
+                        }
 
-                    lst_results.append(dict_result)
+                        lst_results.append(dict_result)
 
                 return {
                     "status": "OK",
