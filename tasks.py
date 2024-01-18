@@ -95,8 +95,7 @@ def run_script():
         get_results = obj_nwt.get_results(
             start_date=start_date,
             list_path=list_location,
-            list_items_path=list_items_location
-        )
+            list_items_path=list_items_location)
 
         if get_results['status'] == 'OK':
             logger.info("The results has been gotten")
