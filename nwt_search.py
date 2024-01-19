@@ -218,6 +218,16 @@ class NewYorkTimesScraper():
             if self.browser.does_page_contain_button(
                 locator=show_more_button_path
             ):
+                time.sleep(2)
+
+                if not self.browser.is_element_focused(
+                    locator=show_more_button_path
+                ):
+                    self.browser.set_focus_to_element(
+                        locator=show_more_button_path
+                    )
+                    time.sleep(0.5)
+
                 self.browser.click_button(
                     locator=show_more_button_path
                 )
