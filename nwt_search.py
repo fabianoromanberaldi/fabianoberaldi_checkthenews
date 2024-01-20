@@ -116,6 +116,47 @@ class NewYorkTimesScraper():
         formated_date = date.strftime(format)
         return formated_date.strip()
 
+    def _has_money(self, title: str, description: str):
+        """Checks if the title or description contains any amount of money.
+        Possible formats: $11.1 | $111,111.11 | 11 dollars | 11 USD
+
+        Args:
+            tile (str): Title of the article
+            description (str): Description of the article
+        """
+        # check if description or title has currency characters
+        money_pattern = r"\$[\d,]+(\.\d+)?|\d+ dollars|\d+ USD"
+
+        has_money = bool(
+            re.search(
+                money_pattern,
+                title + " " + description)
+        )
+
+        return has_money
+
+    def _phrase_count(self, phrase: str, title: str, description: str) -> int:
+        """Checks if the title or description contains the searched phrase
+
+        Args:
+            phrase (str): searched phrase
+            title (str): Title of the article
+            description (str): Description of the article
+        """
+        sentence = title + " " + description
+
+        has_phrase = (
+            phrase.lower() in (sentence.lower())
+        )
+
+        if has_phrase:
+            return (
+                sentence.lower().count(phrase.lower())
+            )
+
+        else:
+            return 0
+
     def open_search(self) -> dict:
         """Open search
 
@@ -394,13 +435,17 @@ class NewYorkTimesScraper():
                         except NoSuchElementException:
                             picture_link = ""
 
-                        # check if description or title has currency characters
-                        money_pattern = r"\$[\d,]+(\.\d+)?|\d+ dollars|\d+ USD"
-                        has_money = bool(
-                            re.search(
-                                money_pattern,
-                                title + description)
-                        )
+                    # check if description or title has currency characters
+                    has_money = self._has_money(
+                        title=title,
+                        description=description
+                    )
+
+                    phrase_count = self._phrase_count(
+                        phrase=self.configuration.search_phrase,
+                        title=title,
+                        description=description
+                    )
 
                     if (
                         datetime.strptime(date, "%Y-%m-%d")
@@ -413,7 +458,7 @@ class NewYorkTimesScraper():
                             "picture_filename": picture_filename,
                             "picture_link": picture_link,
                             "has_money": has_money,
-                            "total_count": ""
+                            "phrase_count": phrase_count
                         }
 
                         lst_results.append(dict_result)
