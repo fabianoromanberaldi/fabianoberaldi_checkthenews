@@ -441,6 +441,8 @@ class NewYorkTimesScraper():
                         description=description
                     )
 
+                    # count the occurrences of the searched phrase
+                    # in the description and title
                     phrase_count = self._phrase_count(
                         phrase=self.configuration.search_phrase,
                         title=title,
