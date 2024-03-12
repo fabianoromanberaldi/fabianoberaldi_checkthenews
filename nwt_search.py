@@ -218,7 +218,7 @@ class NewYorkTimesScraper():
                             date_text_class_name
                         ).text
 
-                        # check if date string contains 'h', like '8h ago'
+                        # check if date string contains 'ago', like '8h ago'
                         if 'ago' in date_text:
                             dt_today = datetime.today()
                             date_str = dt_today.strftime("%Y-%m-%d")
@@ -234,9 +234,6 @@ class NewYorkTimesScraper():
 
                         if dt_result_start_date not in lst_dates:
                             lst_dates.append(dt_result_start_date)
-                            print("List of dates ==========================")
-                            print(lst_dates)
-                            print("MIN Date => ", min(lst_dates))
 
                 if min(lst_dates) <= dt_start_date:
                     # check if the button "Show more" exists
@@ -260,11 +257,10 @@ class NewYorkTimesScraper():
         """Get all loaded results
 
         Args:
-            list_path (str): List element location
-            list_items_path (str): List items location
+             start_date (str): "Start date" to be checked
 
         Returns:
-            _type_: dictionary
+            _type_: list[Article]
         """
 
         lst_results = []
@@ -292,8 +288,8 @@ class NewYorkTimesScraper():
                             date_text_class_name
                         ).text
 
-                        # check if date string contains 'h', like '8h ago'
-                        if 'h' in date_text:
+                        # check if date string contains 'ago', like '8h ago'
+                        if 'ago' in date_text:
                             dt_today = datetime.today()
                             date = dt_today.strftime("%Y-%m-%d")
                         else:
