@@ -132,49 +132,6 @@ def export_to_excel_file(results_list: list[Article],
     excel.save_workbook()
 
 
-def download_images():
-    """Open excel file, and dowload images from \
-        links ('picture_link' column)
-    """
-    try:
-        log.info("Starting downloading the pictures")
-        http = HTTP()
-        excel = Files()
-
-        # open excel file
-        excel.open_workbook(
-            path=WORKBOOK_PATH
-        )
-
-        # read excel worksheet
-        worksheet = excel.read_worksheet_as_table(
-            name=SHEET_NAME,
-            header=True
-        )
-
-        # close workbook
-        excel.close_workbook()
-
-        # get pictures links from the DataFrame
-        for row in worksheet:
-            pic_url = row['picture_link']
-
-            # get the name of the image
-            if pic_url:
-                http.download(
-                    url=pic_url,
-                    target_file="output",
-                    overwrite=True
-                )
-
-                time.sleep(1)
-
-        log.info("The pictures has been downloaded successfully")
-
-    except Exception as ex:
-        log.critical(f"FAILED to download the pictures. Error: {ex}")
-
-
 def dowload_image(article: Article):
 
     try:
