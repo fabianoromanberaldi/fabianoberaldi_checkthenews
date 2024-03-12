@@ -124,11 +124,8 @@ class NewYorkTimesScraper():
             "end_date": end_date
         }
 
-    def open_search(self) -> dict:
+    def open_search(self):
         """Open search
-
-        Returns:
-            dict: dictionary
         """
         try:
             url = self._url_builder(
