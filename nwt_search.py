@@ -2,32 +2,102 @@ import re
 import time
 from datetime import datetime, timedelta
 
+import robocorp.log as log
 from dateutil.relativedelta import relativedelta
 from RPA.Browser.Selenium import Selenium
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
-from configurations import Configuration
+from article import Article
+
+from assets import (
+    list_location,
+    list_items_location,
+    reject_all_button_location,
+    show_more_button_location,
+    date_text_class_name,
+    title_text_class_name,
+    description_text_class_name
+)
+
+from configurations import (
+    SEARCH_PHRASE,
+    MONTHS,
+    BROWSER,
+    AUTO_CLOSE,
+    TIMEOUT_IN_SECONDS
+)
 
 
 class NewYorkTimesScraper():
-    def __init__(self, timeout: int) -> None:
+    def __init__(self) -> None:
         self.browser = Selenium()
-        self.configuration = Configuration()
-        self.timeout = timeout
         self.browser.set_selenium_timeout(
-            value=timedelta(seconds=self.timeout)
+            value=timedelta(seconds=TIMEOUT_IN_SECONDS)
         )
-        self.browser.auto_close = self.configuration.auto_close
+        self.browser.auto_close = AUTO_CLOSE
 
-    def _date_range(self, months: int) -> dict:
+    def _url_builder(self, filter: str, months: int) -> str:
+        """Build the url, based on text filter and quantity of months
+
+        Args:
+            filter (str): Search phrase
+            months (int): Number of months for which you need to receive news \
+                (if 0, means current month)
+
+        Returns:
+            str: str
+        """
+        if not isinstance(months, int):
+            months = int(months)
+
+        # get the data range
+        date_range = self.date_range(months)
+        url = f"https://www.nytimes.com/search?dropmab=false&query={filter}&"
+        url += f"sort=newest&startDate={date_range['start_date']}&"
+        url += f"endDate={date_range['end_date']}&types=article"
+
+        return url
+
+    def _is_date_format(self, date_str: str, format: str) -> bool:
+        try:
+            datetime.strptime(date_str, format)
+            return True
+        except ValueError:
+            return False
+
+    def _convert_text_to_formatted_date(self,
+                                        date_text: str,
+                                        format="%Y-%m-%d") -> str:
+        # Try to convert the text to a date \
+        # object using the format "%b. %d, %Y"
+
+        if self._is_date_format(date_text, "%B %d"):
+            current_year = datetime.today().year
+            date_text = date_text = date_text + ", " + str(current_year)
+            date = datetime.strptime(date_text, "%B %d, %Y").date()
+            formated_date = date.strftime(format)
+            return formated_date.strip()
+
+        try:
+            current_year = datetime.today().year
+            date = datetime.strptime(date_text, "%B %d, %Y").date()
+
+        except ValueError:
+            date_text = date_text + ", " + str(current_year)
+            date = datetime.strptime(date_text, "%B %d, %Y").date()
+
+        formated_date = date.strftime(format)
+        return formated_date.strip()
+
+    def date_range(self, months: int) -> dict:
         """Return the 'Start Date' and 'End Date' depending on the given month
 
         Args:
-            months (int): _description_
+            months (int): Number of months
 
         Returns:
-            dict: _description_
+            dict: dictionary
         """
         if not isinstance(months, int):
             months = int(months)
@@ -47,115 +117,12 @@ class NewYorkTimesScraper():
         start_date = dt_start_date.strftime("%Y-%m-%d")
         end_date = dt_end_date.strftime("%Y-%m-%d")
 
+        log.info(f"Date Range: {start_date} to {end_date}")
+
         return {
             "start_date": start_date,
             "end_date": end_date
         }
-
-    def _url_builder(self, filter: str, months: int) -> str:
-        """Build the url, based on text filter and quantity of months
-
-        Args:
-            filter (str): Search phrase
-            months (int): Number of months for which you need to receive news \
-                (if 0, means current month)
-
-        Returns:
-            str: str
-        """
-        if not isinstance(months, int):
-            months = int(months)
-
-        # get the data range
-        date_range = self._date_range(months)
-        url = f"https://www.nytimes.com/search?dropmab=false&query={filter}&"
-        url += f"sort=newest&startDate={date_range['start_date']}&"
-        url += f"endDate={date_range['end_date']}&types=article"
-
-        return {
-            "filter": filter,
-            "start_date": date_range['start_date'],
-            "end_date": date_range['end_date'],
-            "url": url
-        }
-
-    def _find_element(self, element_path: str, timeout: int) -> bool:
-        """Check if element exists or not
-
-        Args:
-            element_path (str): Element locator
-            timeout (int): Timeout (waiting time)
-
-        Returns:
-            bool: True or False
-        """
-        try:
-            self.browser.wait_until_element_is_visible(
-                locator=element_path,
-                timeout=timeout
-            )
-            self.browser.find_element(element_path)
-            return True
-        except Exception as ex:
-            print("ERROR : ", ex)
-            return False
-
-    def _convert_text_to_formatted_date(self,
-                                        date_text: str,
-                                        format="%Y-%m-%d") -> str:
-        # Try to convert the text to a date \
-        # object using the format "%b. %d, %Y"
-        try:
-            current_year = datetime.today().year
-            date = datetime.strptime(date_text, "%b. %d, %Y").date()
-
-        except ValueError:
-            date_text = date_text + ", " + str(current_year)
-            date = datetime.strptime(date_text, "%b. %d, %Y").date()
-
-        formated_date = date.strftime(format)
-        return formated_date.strip()
-
-    def _has_money(self, title: str, description: str):
-        """Checks if the title or description contains any amount of money.
-        Possible formats: $11.1 | $111,111.11 | 11 dollars | 11 USD
-
-        Args:
-            tile (str): Title of the article
-            description (str): Description of the article
-        """
-        # check if description or title has currency characters
-        money_pattern = r"\$[\d,]+(\.\d+)?|\d+ dollars|\d+ USD"
-
-        has_money = bool(
-            re.search(
-                money_pattern,
-                title + " " + description)
-        )
-
-        return has_money
-
-    def _phrase_count(self, phrase: str, title: str, description: str) -> int:
-        """Checks if the title or description contains the searched phrase
-
-        Args:
-            phrase (str): searched phrase
-            title (str): Title of the article
-            description (str): Description of the article
-        """
-        sentence = title + " " + description
-
-        has_phrase = (
-            phrase.lower() in (sentence.lower())
-        )
-
-        if has_phrase:
-            return (
-                sentence.lower().count(phrase.lower())
-            )
-
-        else:
-            return 0
 
     def open_search(self) -> dict:
         """Open search
@@ -164,81 +131,37 @@ class NewYorkTimesScraper():
             dict: dictionary
         """
         try:
-            url_builder = self._url_builder(
-                filter=self.configuration.search_phrase,
-                months=self.configuration.months
+            url = self._url_builder(
+                filter=SEARCH_PHRASE,
+                months=MONTHS
             )
+
+            log.info(f"URL: {url}")
 
             # "headlessfirefox"
             self.browser.open_browser(
-                url=url_builder['url'],
-                browser=self.configuration.browser
+                url=url,
+                browser=BROWSER
             )
 
             self.browser.maximize_browser_window()
-
-            return {
-                "status": "OK",
-                "start_date": url_builder['start_date'],
-                "end_date": url_builder['end_date'],
-                "url": url_builder['url'],
-                "message": "The browser was opened successfully"
-            }
-        except Exception as ex:
-            return {
-                "status": "NOK",
-                "start_date": url_builder['start_date'],
-                "end_date": url_builder['end_date'],
-                "url": url_builder['url'],
-                "message": f"FAILED to open the browser. Error: {ex}"
-            }
-
-    def click_on_element(self, element_path: str) -> dict:
-
-        try:
-            if self.browser.is_element_visible(
-                locator=element_path
-            ):
-                self.browser.click_element(
-                    locator=element_path
-                )
-                return {
-                    "status": "OK",
-                    "result": True,
-                    "message": "Element clicked"
-                }
-            else:
-                return {
-                    "status": "OK",
-                    "result": False,
-                    "message": "Element is not visible"
-                }
+            log.info("The browser has been opened successfully.")
 
         except Exception as ex:
-            return {
-                "status": "NOK",
-                "result": False,
-                "message": f"FAILED to click on element. Error: {ex}"
-            }
+            error = f"FAILED to open the browser. Error: {ex}"
+            log.critical(error)
+            raise Exception(error)
 
     def check_results_dates(self,
-                            list_path: str,
-                            list_items_path: str,
-                            close_tracker_button_path: str,
-                            show_more_button_path: str,
                             start_date: str
-                            ) -> dict:
+                            ) -> bool:
         """Check the dates of the results
 
         Args:
-            list_path (str): List element location
-            list_items_path (str): List items elements location
-            close_tracker_button_path (str): 'Close Tracker' button location
-            show_more_button_path (str): 'Show more' button location
             start_date (str): "Start date" to be checked
 
         Returns:
-            _type_: dict
+            _type_: bool
         """
         try:
             dt_start_date = datetime.strptime(start_date, "%Y-%m-%d")
@@ -246,40 +169,39 @@ class NewYorkTimesScraper():
             # if "Your tracker settings" window is open, then close it
             time.sleep(2)
             if self.browser.click_element_if_visible(
-                locator=close_tracker_button_path
+                locator=reject_all_button_location
             ):
                 self.browser.scroll_element_into_view(
-                    locator=close_tracker_button_path
+                    locator=reject_all_button_location
                 )
                 self.browser.click_button(
-                    locator=close_tracker_button_path
+                    locator=reject_all_button_location
                 )
 
             # check if the button "Show more" exists
             if self.browser.does_page_contain_button(
-                locator=show_more_button_path
+                locator=show_more_button_location
             ):
                 time.sleep(2)
 
                 if not self.browser.is_element_focused(
-                    locator=show_more_button_path
+                    locator=show_more_button_location
                 ):
                     self.browser.set_focus_to_element(
-                        locator=show_more_button_path
+                        locator=show_more_button_location
                     )
                     time.sleep(0.5)
 
                 self.browser.click_button(
-                    locator=show_more_button_path
+                    locator=show_more_button_location
                 )
 
-            if self._find_element(
-                element_path=list_path,
-                timeout=5
+            if self.browser.is_element_visible(
+                locator=list_location
             ):
                 # find items
                 items = self.browser.find_elements(
-                    list_items_path
+                    locator=list_items_location
                 )
 
                 lst_dates = []
@@ -287,16 +209,17 @@ class NewYorkTimesScraper():
                 for item in items:
                     if item.find_element(
                         By.CLASS_NAME,
-                        'css-17ubb9w'
+                        date_text_class_name
                     ).is_enabled():
 
                         # get the date
                         date_text = item.find_element(
                             By.CLASS_NAME,
-                            'css-17ubb9w').text
+                            date_text_class_name
+                        ).text
 
                         # check if date string contains 'h', like '8h ago'
-                        if 'h' in date_text:
+                        if 'ago' in date_text:
                             dt_today = datetime.today()
                             date_str = dt_today.strftime("%Y-%m-%d")
                         else:
@@ -311,33 +234,29 @@ class NewYorkTimesScraper():
 
                         if dt_result_start_date not in lst_dates:
                             lst_dates.append(dt_result_start_date)
+                            print("List of dates ==========================")
+                            print(lst_dates)
+                            print("MIN Date => ", min(lst_dates))
 
-                if min(lst_dates) < dt_start_date:
-                    print("DATES ============================")
-                    print(lst_dates)
-                    return {
-                        "status": "OK",
-                        "continue": False,
-                        "message": ""
-                    }
+                if min(lst_dates) <= dt_start_date:
+                    # check if the button "Show more" exists
+                    if not self.browser.does_page_contain_button(
+                        locator=show_more_button_location
+                    ):
+                        return False
+                    else:
+                        return True
                 else:
-                    return {
-                        "status": "OK",
-                        "continue": True,
-                        "message": ""
-                    }
+                    return True
 
         except Exception as ex:
-            return {
-                "status": "NOK",
-                "continue": False,
-                "message": f"FAILED to check results dates. Error: {ex}"
-            }
+            error = f"FAILED to check results dates. Error: {ex}"
+            log.critical(error)
+            raise Exception(error)
 
-    def get_results(self, start_date: str,
-                    list_path: str,
-                    list_items_path: str
-                    ) -> dict:
+    def get_results(self,
+                    start_date: str
+                    ) -> list[Article]:
         """Get all loaded results
 
         Args:
@@ -351,25 +270,27 @@ class NewYorkTimesScraper():
         lst_results = []
 
         try:
-            if self._find_element(
-                element_path=list_path,
-                timeout=5
+            time.sleep(3)
+            if self.browser.is_element_visible(
+                locator=list_location
             ):
 
                 # find items
                 items = self.browser.find_elements(
-                    list_items_path
+                    locator=list_items_location
                 )
 
                 for item in items:
                     if item.find_element(
                             By.CLASS_NAME,
-                            'css-17ubb9w').is_enabled():
+                            date_text_class_name
+                    ).is_enabled():
 
                         # get the date
                         date_text = item.find_element(
                             By.CLASS_NAME,
-                            'css-17ubb9w').text
+                            date_text_class_name
+                        ).text
 
                         # check if date string contains 'h', like '8h ago'
                         if 'h' in date_text:
@@ -383,11 +304,11 @@ class NewYorkTimesScraper():
                         # get the title
                         if item.find_element(
                                 By.CLASS_NAME,
-                                'css-2fgx4k').is_enabled():
+                                title_text_class_name).is_enabled():
 
                             title = item.find_element(
                                 By.CLASS_NAME,
-                                'css-2fgx4k').text
+                                title_text_class_name).text
                         else:
                             title = ""
 
@@ -395,7 +316,8 @@ class NewYorkTimesScraper():
                         try:
                             description = item.find_element(
                                 By.CLASS_NAME,
-                                'css-16nhkrn').text
+                                description_text_class_name
+                            ).text
                         except NoSuchElementException:
                             description = ""
 
@@ -435,47 +357,24 @@ class NewYorkTimesScraper():
                         except NoSuchElementException:
                             picture_link = ""
 
-                    # check if description or title has currency characters
-                    has_money = self._has_money(
-                        title=title,
-                        description=description
-                    )
-
-                    # count the occurrences of the searched phrase
-                    # in the description and title
-                    phrase_count = self._phrase_count(
-                        phrase=self.configuration.search_phrase,
-                        title=title,
-                        description=description
-                    )
-
                     if (
                         datetime.strptime(date, "%Y-%m-%d")
                         >= datetime.strptime(start_date, "%Y-%m-%d")
                     ):
-                        dict_result = {
-                            "date": date,
-                            "title": title,
-                            "description": description,
-                            "picture_filename": picture_filename,
-                            "picture_link": picture_link,
-                            "has_money": has_money,
-                            "phrase_count": phrase_count
-                        }
+                        article = Article(
+                            date=date,
+                            search_phrase=SEARCH_PHRASE,
+                            title=title,
+                            description=description,
+                            picture_filename=picture_filename,
+                            picture_link=picture_link
+                        )
 
-                        lst_results.append(dict_result)
+                        lst_results.append(article)
 
-                return {
-                    "status": "OK",
-                    "results": lst_results,
-                    "results_quantity": len(lst_results),
-                    "message": "The results has been gotten succesfuly"
-                }
+                return lst_results
 
         except Exception as ex:
-            return {
-                "status": "NOK",
-                "results": "",
-                "results_quantity": 0,
-                "message": f"FAILED to get the results. Error: {ex}"
-            }
+            error = f"FAILED to get the results. Error: {ex}"
+            log.critical(error)
+            raise Exception(error)

@@ -1,16 +1,20 @@
-import json
 
+BROWSER = 'firefox'
+SEARCH_PHRASE = 'Brazil'
+MONTHS = 0
+TIMEOUT_IN_SECONDS = 60
+AUTO_CLOSE = False
+DOWNLOAD_IMAGES = False
+ATTEMPTS = 3
+TIMEZONE = 'US/Central'
 
-class Configuration:
-    def __init__(self) -> None:
-        with open("env.json", "r") as env_file:
-            env_data = json.load(env_file)
-
-        self.timezone = env_data['timezone']
-        self.search_phrase = env_data['search_phrase']
-        self.months = env_data['months']
-        self.timeout_in_seconds = env_data['timeout_in_seconds']
-        self.browser = env_data['browser']
-        self.auto_close = env_data['auto_close']
-        self.download_images = env_data['download_images']
-        self.attempts = env_data['attempts']
+WORKBOOK_PATH = './output/nyt_news.xlsx'
+SHEET_NAME = 'news'
+SHEET_COLUMNS = ['date',
+                 'search_phrase',
+                 'title',
+                 'description',
+                 'picture_filename',
+                 'picture_link',
+                 'has_money',
+                 'phrase_count']

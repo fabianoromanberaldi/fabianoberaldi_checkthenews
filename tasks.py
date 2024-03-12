@@ -1,137 +1,88 @@
-import logging
-import sys
 import time
 from datetime import datetime
 
-from pytz import timezone
 from robocorp.tasks import task
+import robocorp.log as log
 from RPA.Excel.Files import Files
 from RPA.HTTP import HTTP
 
-from configurations import Configuration
-from nwt_search import NewYorkTimesScraper
-
-config = Configuration()
-
-# create log file
-print("TIMEZONE: ", config.timezone)
-tz_central = timezone(config.timezone)
-dt_now = datetime.now(tz_central)
-formated_date = dt_now.strftime("%Y%m%d")
-
-log_file = "./output/automation_log.txt"
-log_format = '%(asctime)s | %(name)s | %(levelname)s | %(message)s'
-
-logging.basicConfig(
-    filename=log_file,
-    format=log_format
+from configurations import (
+    DOWNLOAD_IMAGES, MONTHS, ATTEMPTS,
+    WORKBOOK_PATH, SHEET_NAME, SHEET_COLUMNS
 )
 
-logger = logging.getLogger(__name__)
-handler = logging.StreamHandler(sys.stdout)
-handler.setLevel(logging.INFO)
-logger.addHandler(handler)
-logger.setLevel(logging.INFO)
+from nwt_search import NewYorkTimesScraper
 
-logging.basicConfig(filename=log_file)
+from article import Article
 
 
 @task
 def run_script():
-    logger.info("Running script")
-    obj_nwt = NewYorkTimesScraper(
-        timeout=config.timeout_in_seconds
-    )
+    log.info("Running script")
+    obj_nwt = NewYorkTimesScraper()
 
-    workbook_path = "./output/nyt_news.xlsx"
-    sheet_name = "news"
+    for attempt in range(ATTEMPTS):
+        try:
+            # get the data range
+            date_range = obj_nwt.date_range(MONTHS)
 
-    list_location = "//ol[@data-testid='search-results']"
-    list_items_location = "//li[@data-testid='search-bodega-result']"
+            # open browser
+            obj_nwt.open_search()
 
-    reject_all_button_location = "//button[@data-testid='Reject all-btn']"
-    show_more_button_location = (
-        "//button[@data-testid='search-show-more-button']"
-    )
+            continue_check_dates = True
+            page_number = 0
 
-    open_search = obj_nwt.open_search()
+            log.info("Checking dates")
+            while continue_check_dates:
+                time.sleep(0.5)
 
-    if open_search['status'] == "OK":
-        logger.info(f"Open browser: {open_search['message']}")
-        start_date = open_search['start_date']
+                check_dates = obj_nwt.check_results_dates(
+                    start_date=date_range["start_date"]
+                )
+                page_number += 1
+                print("Page number: ", page_number)
 
-        continue_check_dates = True
-        page_number = 0
+                continue_check_dates = check_dates
 
-        logger.info("Checking dates")
-        while continue_check_dates:
-            time.sleep(0.5)
+            log.info(
+                f"Checking dates finished. Number of pages: {page_number}")
 
-            check_dates = obj_nwt.check_results_dates(
-                list_path=list_location,
-                list_items_path=list_items_location,
-                close_tracker_button_path=reject_all_button_location,
-                show_more_button_path=show_more_button_location,
-                start_date=start_date
+            log.info("Getting the results")
+            lst_articles = obj_nwt.get_results(
+                start_date=date_range["start_date"]
             )
-            page_number += 1
-            print("Page number: ", page_number)
 
-            continue_check_dates = check_dates['continue']
+            log.info("The list of articles has been gotten")
+            log.info("Exporting the list of articles to Excel file")
 
-            attempts = 0
-            if check_dates['status'] == "NOK":
-                time.sleep(2)
-                logger.error(f"Checking dates: {check_dates['message']}")
-                attempts += 1
-                if attempts >= config.attempts:
-                    break
-                else:
-                    continue
+            print("DONLOAD IMAGES: *** ", DOWNLOAD_IMAGES, " ***")
+            # donload images
+            if DOWNLOAD_IMAGES:
+                log.info("Downloading images...")
+                for article in lst_articles:
+                    if article.picture_link:
+                        dowload_image(article)
 
-        logger.info(f"Checking dates finished. Number of pages: {page_number}")
+            # export articles to excel
+            export_to_excel_file(
+                results_list=lst_articles,
+                start_date=date_range["start_date"]
+            )
 
-        logger.info("Getting the results")
-        get_results = obj_nwt.get_results(
-            start_date=start_date,
-            list_path=list_location,
-            list_items_path=list_items_location)
+            # get out of the loop if the execution has been succeeded
+            break
 
-        if get_results['status'] == 'OK':
-            logger.info("The results has been gotten")
-            logger.info("Exporting the results to Excel file")
-
-            try:
-                lst_results = get_results['results']
-
-                export_to_excel_file(
-                    results_list=lst_results,
-                    workbook_path=workbook_path,
-                    sheet_name=sheet_name,
-                    start_date=start_date
-                )
-                logger.info("The results has been exported successfully")
-
-            except Exception as ex:
-                logger.error(
-                    f"FAILED to export the results to Excel file. Error: {ex}")
-
-            if config.download_images:
-                download_images(
-                    excel_file_path=workbook_path,
-                    sheet_name=sheet_name
-                )
-
-        else:
-            logger.error(f"Getting results: {get_results['message']}")
-
-    else:
-        logger.error(f"Open browser: {open_search['message']}")
+        except Exception as ex:
+            log.critical(f"FAIL to execute: {attempt + 1}: {str(ex)}")
+            time.sleep(3)
+            # browser.close_browser()
+            if attempt == (ATTEMPTS - 1):
+                log.info("The maximum number of attempts has been reached.")
+                log.critical("*** THE EXECUTION HAS BEEN STOPPED ***")
+                break
 
 
-def export_to_excel_file(results_list: list[dict],
-                         workbook_path: str,
-                         sheet_name: str,
+def export_to_excel_file(results_list: list[Article],
                          start_date: str
                          ):
     """Creates a workbook and then fill it with the results
@@ -140,21 +91,21 @@ def export_to_excel_file(results_list: list[dict],
         results_list (list[dict]): Dict list
     """
     dt_start_date = datetime.strptime(start_date, "%Y-%m-%d")
-    total_count = len(results_list)
+    columns = SHEET_COLUMNS
 
     # create a workbook
     excel = Files()
     excel.create_workbook(
-        path=workbook_path,
-        sheet_name=sheet_name,
+        path=WORKBOOK_PATH,
+        sheet_name=SHEET_NAME,
         fmt="xlsx"
     )
     excel.save_workbook()
 
     # insert header at the first row
     worksheet_column = 1
-    for key in results_list[0]:
-        excel.set_cell_value(1, worksheet_column, key)
+    for column in columns:
+        excel.set_cell_value(1, worksheet_column, column)
         worksheet_column += 1
 
     # insert rows values
@@ -163,12 +114,12 @@ def export_to_excel_file(results_list: list[dict],
         worksheet_column = 1
         # check the date
 
-        if datetime.strptime(item['date'], "%Y-%m-%d") >= dt_start_date:
-            for key in item.keys():
-                if key == "total_count":
-                    cell_value = total_count
-                else:
-                    cell_value = item[key]
+        if datetime.strptime(item.date, "%Y-%m-%d") >= dt_start_date:
+            dict_item = item.__dict__
+            dict_item['has_money'] = item.has_money
+            dict_item['phrase_count'] = item.phrase_count
+            for key in list(dict_item.keys()):
+                cell_value = dict_item[key]
 
                 excel.set_cell_value(
                     row=worksheet_row,
@@ -181,23 +132,23 @@ def export_to_excel_file(results_list: list[dict],
     excel.save_workbook()
 
 
-def download_images(excel_file_path: str, sheet_name: str):
+def download_images():
     """Open excel file, and dowload images from \
         links ('picture_link' column)
     """
     try:
-        logger.info("Starting downloading the pictures")
+        log.info("Starting downloading the pictures")
         http = HTTP()
         excel = Files()
 
         # open excel file
         excel.open_workbook(
-            path=excel_file_path
+            path=WORKBOOK_PATH
         )
 
         # read excel worksheet
         worksheet = excel.read_worksheet_as_table(
-            name=sheet_name,
+            name=SHEET_NAME,
             header=True
         )
 
@@ -218,7 +169,30 @@ def download_images(excel_file_path: str, sheet_name: str):
 
                 time.sleep(1)
 
-        logger.info("The pictures has been downloaded successfully")
+        log.info("The pictures has been downloaded successfully")
 
     except Exception as ex:
-        logger.error(f"FAILED to download the pictures. Error: {ex}")
+        log.critical(f"FAILED to download the pictures. Error: {ex}")
+
+
+def dowload_image(article: Article):
+
+    try:
+        log.info("Starting downloading the pictures")
+        http = HTTP()
+
+        if article.picture_link:
+            http.download(
+                url=article.picture_link,
+                target_file="output",
+                overwrite=True
+            )
+
+            time.sleep(1)
+
+        log.info("The pictures has been downloaded successfully")
+
+    except Exception as ex:
+        error = f"FAILED to download images from '{article.picture_link}'. "
+        error += f"Error: {ex}"
+        log.critical(error)
