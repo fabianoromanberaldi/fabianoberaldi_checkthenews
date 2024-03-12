@@ -1,10 +1,10 @@
 
-BROWSER = 'firefox'
+BROWSER = 'headlessfirefox'
 SEARCH_PHRASE = 'Brazil'
 MONTHS = 0
 TIMEOUT_IN_SECONDS = 60
 AUTO_CLOSE = True
-DOWNLOAD_IMAGES = False
+DOWNLOAD_IMAGES = True
 ATTEMPTS = 3
 TIMEZONE = 'US/Central'
 
