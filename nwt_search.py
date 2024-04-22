@@ -149,9 +149,7 @@ class NewYorkTimesScraper():
             log.critical(error)
             raise Exception(error)
 
-    def check_results_dates(self,
-                            start_date: str
-                            ) -> bool:
+    def check_results_dates(self, start_date: str) -> bool:
         """Check the dates of the results
 
         Args:
@@ -176,6 +174,7 @@ class NewYorkTimesScraper():
                 )
 
             # check if the button "Show more" exists
+            # if button exists, click the button
             if self.browser.does_page_contain_button(
                 locator=show_more_button_location
             ):
@@ -193,6 +192,7 @@ class NewYorkTimesScraper():
                     locator=show_more_button_location
                 )
 
+            # check if result list is visble
             if self.browser.is_element_visible(
                 locator=list_location
             ):
@@ -232,16 +232,16 @@ class NewYorkTimesScraper():
                         if dt_result_start_date not in lst_dates:
                             lst_dates.append(dt_result_start_date)
 
-                if min(lst_dates) <= dt_start_date:
-                    # check if the button "Show more" exists
-                    if not self.browser.does_page_contain_button(
-                        locator=show_more_button_location
-                    ):
-                        return False
-                    else:
-                        return True
+            if min(lst_dates) <= dt_start_date:
+                # check if the button "Show more" exists
+                if not self.browser.does_page_contain_button(
+                    locator=show_more_button_location
+                ):
+                    return False
                 else:
                     return True
+
+            return False
 
         except Exception as ex:
             error = f"FAILED to check results dates. Error: {ex}"
@@ -365,7 +365,7 @@ class NewYorkTimesScraper():
 
                         lst_results.append(article)
 
-                return lst_results
+            return lst_results
 
         except Exception as ex:
             error = f"FAILED to get the results. Error: {ex}"

@@ -1,10 +1,10 @@
 
-BROWSER = 'headlessfirefox'
-SEARCH_PHRASE = 'Brazil'
+BROWSER = 'edge'
+SEARCH_PHRASE = 'Dengue'
 MONTHS = 0
 TIMEOUT_IN_SECONDS = 60
 AUTO_CLOSE = True
-DOWNLOAD_IMAGES = True
+DOWNLOAD_IMAGES = False
 ATTEMPTS = 3
 TIMEZONE = 'US/Central'
 

@@ -33,7 +33,7 @@ class Article:
         return has_money
 
     @property
-    def phrase_count(self) -> bool:
+    def phrase_count(self) -> int:
         """Checks if the title or description contains the searched phrase
 
         Args:
