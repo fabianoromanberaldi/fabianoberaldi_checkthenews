@@ -45,7 +45,8 @@ def run_script():
                 continue_check_dates = check_dates
 
             log.info(
-                f"Checking dates finished. Number of pages: {page_number}")
+                f"Checking dates finished. Number of pages: {page_number}"
+            )
 
             log.info("Getting the results")
             lst_articles = obj_nwt.get_results(
@@ -112,8 +113,8 @@ def export_to_excel_file(results_list: list[Article],
     worksheet_row = 2
     for item in results_list:
         worksheet_column = 1
-        # check the date
 
+        # check the date
         if datetime.strptime(item.date, "%Y-%m-%d") >= dt_start_date:
             dict_item = item.__dict__
             dict_item['has_money'] = item.has_money

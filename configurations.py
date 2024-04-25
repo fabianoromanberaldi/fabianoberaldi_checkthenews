@@ -1,11 +1,11 @@
 
-BROWSER = 'edge'
+BROWSER = 'firefox'
 SEARCH_PHRASE = 'Dengue'
-MONTHS = 0
+MONTHS = 10
 TIMEOUT_IN_SECONDS = 60
-AUTO_CLOSE = True
+AUTO_CLOSE = False
 DOWNLOAD_IMAGES = False
-ATTEMPTS = 3
+ATTEMPTS = 1
 TIMEZONE = 'US/Central'
 
 WORKBOOK_PATH = './output/nyt_news.xlsx'

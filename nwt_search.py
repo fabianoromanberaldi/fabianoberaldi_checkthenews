@@ -9,6 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
 from article import Article
+from date_converter import DateConverter
 
 from assets import (
     list_location,
@@ -59,36 +60,36 @@ class NewYorkTimesScraper():
 
         return url
 
-    def _is_date_format(self, date_str: str, format: str) -> bool:
-        try:
-            datetime.strptime(date_str, format)
-            return True
-        except ValueError:
-            return False
+    # def _is_date_format(self, date_str: str, format: str) -> bool:
+    #     try:
+    #         datetime.strptime(date_str, format)
+    #         return True
+    #     except ValueError:
+    #         return False
 
-    def _convert_text_to_formatted_date(self,
-                                        date_text: str,
-                                        format="%Y-%m-%d") -> str:
-        # Try to convert the text to a date \
-        # object using the format "%b. %d, %Y"
+    # def _convert_text_to_formatted_date(self,
+    #                                     date_text: str,
+    #                                     format="%Y-%m-%d") -> str:
+    #     # Try to convert the text to a date \
+    #     # object using the format "%b. %d, %Y"
 
-        if self._is_date_format(date_text, "%B %d"):
-            current_year = datetime.today().year
-            date_text = date_text = date_text + ", " + str(current_year)
-            date = datetime.strptime(date_text, "%B %d, %Y").date()
-            formated_date = date.strftime(format)
-            return formated_date.strip()
+    #     if self._is_date_format(date_text, "%B %d"):
+    #         current_year = datetime.today().year
+    #         date_text = date_text + ", " + str(current_year)
+    #         date = datetime.strptime(date_text, "%B %d, %Y").date()
+    #         formated_date = date.strftime(format)
+    #         return formated_date.strip()
 
-        try:
-            current_year = datetime.today().year
-            date = datetime.strptime(date_text, "%B %d, %Y").date()
+    #     try:
+    #         current_year = datetime.today().year
+    #         date = datetime.strptime(date_text, "%B %d, %Y").date()
 
-        except ValueError:
-            date_text = date_text + ", " + str(current_year)
-            date = datetime.strptime(date_text, "%B %d, %Y").date()
+    #     except ValueError:
+    #         date_text = date_text + ", " + str(current_year)
+    #         date = datetime.strptime(date_text, "%B %d, %Y").date()
 
-        formated_date = date.strftime(format)
-        return formated_date.strip()
+    #     formated_date = date.strftime(format)
+    #     return formated_date.strip()
 
     def date_range(self, months: int) -> dict:
         """Return the 'Start Date' and 'End Date' depending on the given month
@@ -159,6 +160,7 @@ class NewYorkTimesScraper():
             _type_: bool
         """
         try:
+            converter = DateConverter()
             dt_start_date = datetime.strptime(start_date, "%Y-%m-%d")
 
             # if "Your tracker settings" window is open, then close it
@@ -173,6 +175,8 @@ class NewYorkTimesScraper():
                     locator=reject_all_button_location
                 )
 
+            time.sleep(2)
+
             # check if the button "Show more" exists
             # if button exists, click the button
             if self.browser.does_page_contain_button(
@@ -186,7 +190,7 @@ class NewYorkTimesScraper():
                     self.browser.set_focus_to_element(
                         locator=show_more_button_location
                     )
-                    time.sleep(0.5)
+                    time.sleep(1)
 
                 self.browser.click_button(
                     locator=show_more_button_location
@@ -215,14 +219,18 @@ class NewYorkTimesScraper():
                             date_text_class_name
                         ).text
 
+                        dt_today = datetime.today()
                         # check if date string contains 'ago', like '8h ago'
                         if 'ago' in date_text:
-                            dt_today = datetime.today()
                             date_str = dt_today.strftime("%Y-%m-%d")
                         else:
-                            date_str = self._convert_text_to_formatted_date(
-                                date_text=date_text
-                            )
+                            date_str = (
+                                converter.convert_text_to_formatted_date(
+                                    date_text=date_text
+                                ))
+                            # date_str = self._convert_text_to_formatted_date(
+                            #     date_text=date_text
+                            # )
 
                         dt_result_start_date = datetime.strptime(
                             date_str,
@@ -241,7 +249,7 @@ class NewYorkTimesScraper():
                 else:
                     return True
 
-            return False
+            return True
 
         except Exception as ex:
             error = f"FAILED to check results dates. Error: {ex}"
@@ -259,7 +267,7 @@ class NewYorkTimesScraper():
         Returns:
             _type_: list[Article]
         """
-
+        date_converter = DateConverter()
         lst_results = []
 
         try:
@@ -290,9 +298,13 @@ class NewYorkTimesScraper():
                             dt_today = datetime.today()
                             date = dt_today.strftime("%Y-%m-%d")
                         else:
-                            date = self._convert_text_to_formatted_date(
-                                date_text=date_text
-                            )
+                            # date = self.convert_text_to_formatted_date(
+                            #     date_text=date_text
+                            # )
+                            date = (
+                                date_converter.convert_text_to_formatted_date(
+                                    date_text
+                                ))
 
                         # get the title
                         if item.find_element(
