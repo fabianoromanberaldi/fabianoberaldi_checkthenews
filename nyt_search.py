@@ -52,7 +52,7 @@ class NewYorkTimesScraper():
         if not isinstance(months, int):
             months = int(months)
 
-        # get the data range
+        # get the date range and build the URL
         date_range = self.date_range(months)
         url = f"https://www.nytimes.com/search?dropmab=false&query={filter}&"
         url += f"sort=newest&startDate={date_range['start_date']}&"
@@ -95,7 +95,7 @@ class NewYorkTimesScraper():
         }
 
     def open_search(self):
-        """Open search
+        """Opens the browser and navigates to the given URL
         """
         try:
             url = self._url_builder(
@@ -263,9 +263,6 @@ class NewYorkTimesScraper():
                             dt_today = datetime.today()
                             date = dt_today.strftime("%Y-%m-%d")
                         else:
-                            # date = self.convert_text_to_formatted_date(
-                            #     date_text=date_text
-                            # )
                             date = (
                                 date_converter.convert_text_to_formatted_date(
                                     date_text
