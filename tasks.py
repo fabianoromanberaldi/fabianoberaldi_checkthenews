@@ -56,7 +56,7 @@ def run_script():
             log.info("The list of articles has been gotten")
             log.info("Exporting the list of articles to Excel file")
 
-            print("DONLOAD IMAGES: *** ", DOWNLOAD_IMAGES, " ***")
+            print("DOWNLOAD IMAGES: *** ", DOWNLOAD_IMAGES, " ***")
             # download images
             if DOWNLOAD_IMAGES:
                 log.info("Downloading images...")

@@ -60,37 +60,6 @@ class NewYorkTimesScraper():
 
         return url
 
-    # def _is_date_format(self, date_str: str, format: str) -> bool:
-    #     try:
-    #         datetime.strptime(date_str, format)
-    #         return True
-    #     except ValueError:
-    #         return False
-
-    # def _convert_text_to_formatted_date(self,
-    #                                     date_text: str,
-    #                                     format="%Y-%m-%d") -> str:
-    #     # Try to convert the text to a date \
-    #     # object using the format "%b. %d, %Y"
-
-    #     if self._is_date_format(date_text, "%B %d"):
-    #         current_year = datetime.today().year
-    #         date_text = date_text + ", " + str(current_year)
-    #         date = datetime.strptime(date_text, "%B %d, %Y").date()
-    #         formated_date = date.strftime(format)
-    #         return formated_date.strip()
-
-    #     try:
-    #         current_year = datetime.today().year
-    #         date = datetime.strptime(date_text, "%B %d, %Y").date()
-
-    #     except ValueError:
-    #         date_text = date_text + ", " + str(current_year)
-    #         date = datetime.strptime(date_text, "%B %d, %Y").date()
-
-    #     formated_date = date.strftime(format)
-    #     return formated_date.strip()
-
     def date_range(self, months: int) -> dict:
         """Return the 'Start Date' and 'End Date' depending on the given month
 
@@ -228,9 +197,6 @@ class NewYorkTimesScraper():
                                 converter.convert_text_to_formatted_date(
                                     date_text=date_text
                                 ))
-                            # date_str = self._convert_text_to_formatted_date(
-                            #     date_text=date_text
-                            # )
 
                         dt_result_start_date = datetime.strptime(
                             date_str,
@@ -248,8 +214,8 @@ class NewYorkTimesScraper():
                     return False
                 else:
                     return True
-
-            return True
+            else:
+                return True
 
         except Exception as ex:
             error = f"FAILED to check results dates. Error: {ex}"
