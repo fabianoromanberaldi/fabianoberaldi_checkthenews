@@ -69,28 +69,6 @@ class DateConverter:
                 except ValueError:
                     continue
 
-        # try:
-        #     # Try to convert the text to a date object using
-        #     # the format "%B %d, %Y"
-        #     if ',' in date_text:
-        #         if '.' in date_text:
-        #             date = datetime.strptime(date_text, "%b. %d, %Y").date()
-        #         else:
-        #             date = datetime.strptime(date_text, "%B %d, %Y").date()
-        #     else:
-        #         if '.' in date_text:
-        #             date = datetime.strptime(date_text, "%b. %d, %Y").date()
-        #         else:
-        #             date = datetime.strptime(date_text, "%B %d, %Y").date()
-        # except ValueError:
-        #     # If the format is not "%B %d, %Y",
-        #     # add the current year and try again
-        #     date_text = date_text + ", " + str(self.current_date.year)
-        #     try:
-        #         date = datetime.strptime(date_text, "%B %d, %Y").date()
-        #     except ValueError:  # noqa: E722
-        #         date = datetime.strptime(date_text, "%b. %d, %Y")
-
         # Format the date and return the result
         formatted_date = date.strftime(format)
         return formatted_date.strip()

@@ -1,12 +1,10 @@
-
 BROWSER = 'firefox'
 SEARCH_PHRASE = 'Brazil'
-MONTHS = 5
+MONTHS = 0
 TIMEOUT_IN_SECONDS = 60
 AUTO_CLOSE = False
-DOWNLOAD_IMAGES = False
-ATTEMPTS = 1
-TIMEZONE = 'US/Central'
+DOWNLOAD_IMAGES = True
+ATTEMPTS = 2
 
 WORKBOOK_PATH = './output/nyt_news.xlsx'
 SHEET_NAME = 'news'

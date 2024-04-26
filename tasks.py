@@ -6,12 +6,12 @@ import robocorp.log as log
 from RPA.Excel.Files import Files
 from RPA.HTTP import HTTP
 
-from configurations import (
+from configuration import (
     DOWNLOAD_IMAGES, MONTHS, ATTEMPTS,
     WORKBOOK_PATH, SHEET_NAME, SHEET_COLUMNS
 )
 
-from nwt_search import NewYorkTimesScraper
+from nyt_search import NewYorkTimesScraper
 
 from article import Article
 
@@ -76,7 +76,6 @@ def run_script():
         except Exception as ex:
             log.critical(f"FAIL to execute: {attempt + 1}: {str(ex)}")
             time.sleep(3)
-            # browser.close_browser()
             if attempt == (ATTEMPTS - 1):
                 log.info("The maximum number of attempts has been reached.")
                 log.critical("*** THE EXECUTION HAS BEEN STOPPED ***")
@@ -136,7 +135,7 @@ def export_to_excel_file(results_list: list[Article],
 def dowload_image(article: Article):
 
     try:
-        log.info("Starting downloading the pictures")
+        log.info("Starting the download of the pictures")
         http = HTTP()
 
         if article.picture_link:

@@ -21,7 +21,7 @@ from assets import (
     description_text_class_name
 )
 
-from configurations import (
+from configuration import (
     SEARCH_PHRASE,
     MONTHS,
     BROWSER,
@@ -206,16 +206,15 @@ class NewYorkTimesScraper():
                         if dt_result_start_date not in lst_dates:
                             lst_dates.append(dt_result_start_date)
 
-            if min(lst_dates) <= dt_start_date:
-                # check if the button "Show more" exists
-                if not self.browser.does_page_contain_button(
-                    locator=show_more_button_location
-                ):
+            if not self.browser.does_page_contain_button(
+                locator=show_more_button_location
+            ):
+                return False
+            else:
+                if min(lst_dates) <= dt_start_date:
                     return False
                 else:
                     return True
-            else:
-                return True
 
         except Exception as ex:
             error = f"FAILED to check results dates. Error: {ex}"
