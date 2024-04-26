@@ -1,4 +1,4 @@
-BROWSER = 'firefox'
+BROWSER = 'headlessfirefox'
 SEARCH_PHRASE = 'Brazil'
 MONTHS = 0
 TIMEOUT_IN_SECONDS = 60

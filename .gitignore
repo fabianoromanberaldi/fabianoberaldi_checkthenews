@@ -21,3 +21,4 @@ testrun/*
 *.jpg
 *.png
 *.xlsx
+nyt_locators.json
