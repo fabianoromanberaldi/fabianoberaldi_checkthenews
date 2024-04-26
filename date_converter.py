@@ -5,17 +5,6 @@ class DateConverter:
     def __init__(self):
         self.current_date = datetime.today()
 
-    def is_date_format(
-        self,
-        date_str:
-        str, format: str
-    ) -> bool:
-        try:
-            datetime.strptime(date_str, format)
-            return True
-        except ValueError:
-            return False
-
     def standardize_month_name(
             self,
             date_text: str,
