@@ -5,9 +5,9 @@ dependencies:
   - python=3.10.12
   - pip=23.2.1
   - robocorp-truststore=0.8.0
-  - pytz=2023.3
-  - python-dateutil=2.8.2
+  - pytz=2024.1
+  - python-dateutil=2.9.0
   - pip:
-      - rpaframework==27.7.0
-      - robocorp==1.2.4
-      - robocorp-browser==2.2.1
+      - rpaframework==28.6.2
+      - robocorp==2.1.0
+      - robocorp-browser==2.3.3
