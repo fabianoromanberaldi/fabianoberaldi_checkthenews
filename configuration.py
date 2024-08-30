@@ -1,4 +1,4 @@
-BROWSER = 'headlessfirefox'
+BROWSER = 'firefox'
 SEARCH_PHRASE = 'Dengue'
 MONTHS = 1
 TIMEOUT_IN_SECONDS = 60
